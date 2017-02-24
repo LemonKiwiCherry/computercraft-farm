@@ -1,0 +1,1 @@
+shell.run("monitor", "right", "receive") --I chose to run this program on an array of 2x2 monitors.

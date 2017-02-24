@@ -1,0 +1,13 @@
+local monitor = peripheral.wrap("right") --In this case, a computer is used to receive the code and monitors to display it. Change "right" to whatever side the monitor is on.
+rednet.open("bottom") --The modem for the computer is on the bottom. Change "bottom" to whatever side the modem is on.
+term.setCursorPos(1,1)
+term.clear()
+print("Any error messages will appear as they occur.")
+local senderId, message, protocol = rednet.receive("fuelturtle")
+term.clear()
+term.setCursorPos(1,1)
+print(message)
+print("")
+print("Press any key to reset.")
+local var = read()
+os.reboot()
