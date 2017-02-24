@@ -1,0 +1,74 @@
+function row()
+  for i = 1,16 do
+    turtle.select(3)
+    turtle.digDown()
+    turtle.placeDown()
+    turtle.forward()
+
+    local fuellevel = turtle.getFuelLevel()
+      if fuellevel < 1 then
+        os.shutdown()
+      end
+   end
+end
+
+function leftReset()
+  turtle.turnLeft()
+  turtle.forward()
+  turtle.turnLeft()
+  turtle.forward()
+
+  local fuellevel = turtle.getFuelLevel()
+    if fuellevel < 1 then
+      os.shutdown()
+    end
+
+end
+
+function rightReset()
+  turtle.turnRight()
+  turtle.forward()
+  turtle.turnRight()
+  turtle.forward()
+
+  local fuellevel = turtle.getFuelLevel()
+    if fuellevel < 1 then
+      os.shutdown()
+    end
+end
+
+function resetAE()
+  turtle.turnLeft()
+  turtle.forward()
+  turtle.forward()
+  turtle.forward()
+  turtle.turnLeft()
+  turtle.forward()
+end
+
+function refuel()
+  turtle.select(1)
+
+  local coal = turtle.getItemCount(1) - 1
+  turtle.refuel(coal)
+
+  local fuellevel = turtle.getFuelLevel()
+
+  if fuellevel < 3 then
+    rednet.broadcast("Fuel level is low on the farming turtle.","fuelturtle")
+  end
+end
+
+rednet.open("right")
+row()
+leftReset()
+refuel()
+row()
+rightReset()
+refuel()
+row()
+leftReset()
+refuel()
+row()
+refuel()
+resetAE()
